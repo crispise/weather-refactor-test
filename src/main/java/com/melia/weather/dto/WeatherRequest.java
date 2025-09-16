@@ -11,3 +11,4 @@ public record WeatherRequest(
         @NotNull @Min(-180) @Max(180) Double lon,
         LocalDate date
 ) {}
+

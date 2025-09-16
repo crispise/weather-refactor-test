@@ -1,11 +1,11 @@
 package com.melia.weather.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAlias;
 
-public record WeatherResponse(double latitude,
-                              double longitude,
-                              @JsonProperty ("timezone") String timeZone,
-                              @JsonProperty ("daily") DailyInformationResponse dailyInformation,
-                              @JsonProperty("daily_units") DailyInformationUnits dailyUnits,
+public record WeatherResponse(Double latitude,
+                              Double longitude,
+                              @JsonAlias("timezone") String timeZone,
+                              @JsonAlias("daily") DailyInformationResponse dailyInformation,
+                              @JsonAlias("daily_units") DailyInformationUnits dailyUnits,
                               String weatherDescription) {
 }
