@@ -1,6 +1,6 @@
 package com.melia.weather.exceptions;
 
-public class WeatherDataNotFoundException extends RuntimeException{
+public class WeatherDataNotFoundException extends RuntimeException {
     public WeatherDataNotFoundException(String message) {
         super(message);
     }

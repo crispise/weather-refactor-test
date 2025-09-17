@@ -34,21 +34,20 @@ public class WeatherInfoServiceTest {
 
     @Test
     void returns_description_whenCode() {
-        WeatherRequest request = new WeatherRequest(40.0, -3.7, null);
+        WeatherRequest request = new WeatherRequest(51.54, 22.0 , null);
         WeatherResponse response = new WeatherResponse(
-                40.0, -3.7, "Europe/Madrid",
-                new DailyInformationResponse(List.of("2025-09-16"), List.of(0), List.of(), List.of(),
-                        List.of(), List.of(), List.of(), List.of()),
+                51.539066, 22.011063, "Europe/Warsaw",
+                new DailyInformationResponse(List.of("2025-09-17"), List.of( 51), List.of( 16.1), List.of( 10.0),
+                        List.of( 14.0), List.of(8.5), List.of(45093.3), List.of( 8828.88)),
                 new DailyInformationUnits(null,null,null,null,null,null,null),
                 null
         );
 
         when(openMeteoClient.getWeatherResponse(request)).thenReturn(response);
-        when(weatherCodeTranslatorService.getDescriptionFromWmoCode(response)).thenReturn("Clear sky");
-        WeatherResponse out = weatherInfoService.getWeatherInfoForSpecificDate(new WeatherRequest(40.0, -3.7, null));
+        when(weatherCodeTranslatorService.getDescriptionFromWmoCode(response)).thenReturn("Drizzle: Light, moderate, and dense intensity");
+        WeatherResponse out = weatherInfoService.getWeatherInfoForSpecificDate(new WeatherRequest(51.54, 22.0, null));
 
-        assertEquals("Clear sky", out.weatherDescription());
-
+        assertEquals("Drizzle: Light, moderate, and dense intensity", out.weatherDescription());
     }
 
     @Test

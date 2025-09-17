@@ -13,5 +13,6 @@ public record DailyInformationResponse(
         @JsonAlias("apparent_temperature_min") List<Double> apparentTemperatureMin,
         @JsonAlias("daylight_duration") List<Double> daylightDuration,
         @JsonAlias("sunshine_duration") List<Double> sunshineDuration
-) {}
+) {
+}
 

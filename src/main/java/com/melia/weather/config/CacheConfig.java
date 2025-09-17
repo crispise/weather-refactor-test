@@ -1,6 +1,5 @@
 package com.melia.weather.config;
 
-
 import com.github.benmanes.caffeine.cache.Caffeine;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
@@ -22,9 +21,11 @@ public class CacheConfig {
     }
 
     @Bean
-    public CacheManager cacheManager(Caffeine<Object, Object> caffeine) {
+    public CacheManager cacheManager() {
         CaffeineCacheManager mgr = new CaffeineCacheManager("openMeteo");
-        mgr.setCaffeine(caffeine);
+        mgr.setCaffeine(Caffeine.newBuilder()
+                .maximumSize(10_000)
+                .expireAfterAccess(Duration.ofMinutes(30)));
         return mgr;
     }
 

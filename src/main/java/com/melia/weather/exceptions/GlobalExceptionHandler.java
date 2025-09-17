@@ -6,7 +6,6 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.HashMap;
 import java.util.List;
@@ -43,7 +42,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ExternalApiException.class)
-    public ResponseEntity<?> handleExternalApiError(ExternalApiException ex) {
+    public ResponseEntity<Map<String, Object>> handleExternalApiError(ExternalApiException ex) {
         return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(Map.of(
                 "error", "bad_gateway",
                 "message", "Weather provider error"
@@ -51,7 +50,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(WeatherDataNotFoundException.class)
-    public ResponseEntity<?> handleWeatherDataNotFound(WeatherDataNotFoundException ex) {
+    public ResponseEntity<Map<String, Object>> handleWeatherDataNotFound(WeatherDataNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of(
                 "error", "not_found",
                 "message", ex.getMessage()

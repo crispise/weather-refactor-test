@@ -10,5 +10,6 @@ public record DailyInformationUnits(
         @JsonAlias("apparent_temperature_min") String apparentTemperatureMin,
         @JsonAlias("daylight_duration") String daylightDuration,
         @JsonAlias("sunshine_duration") String sunshineDuration
-) {}
+) {
+}
 
